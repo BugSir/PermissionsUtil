@@ -1,7 +1,7 @@
 # PermissionsUtil
 [![](https://www.jitpack.io/v/BugSir/PermissionsUtil.svg)](https://www.jitpack.io/#BugSir/PermissionsUtil)
 
-基于[EasyPermissions](https://github.com/googlesamples/easypermissions) 1.2的进行修改，并增加自定义询问框接口Rationale,只需要要baseactivity/basefragment定义好相关接口即可
+基于[EasyPermissions](https://github.com/googlesamples/easypermissions) 1.2的进行修改，并增加自定义询问框接口Rationale,简化了部分代码
 
 # 引用方法:<br/>
 <pre><code>
@@ -68,6 +68,24 @@ public interface IPermissionCallbacks{
          */
     void onPermissionsDenied(int requestCode, @NonNull List<String> perms);
 }
+```
+### 权限被拒绝且不再询问，这时候需要提示用户去设置界面修改权限
+```java
+if (PermissionsUtil.somePermissionPermanentlyDenied(this, perms)) {
+            new AlertDialog.Builder(this).setCancelable(false).setTitle("权限申请提示").setMessage("当前应用缺少必要权限，该功能暂时无法使用。如若需要，请允许权限申请授权。").setPositiveButton("去设置", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                    PermissionSetting.go2Setting(MainActivity.this);
+                }
+            }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            }).create().show();
+
+        }
 ```
 ### 自定义弹框内容
 ```java 
