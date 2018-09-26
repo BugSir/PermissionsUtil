@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">PermissionsUtil</string>
+    <string name="camera">Camera</string>
+    <string name="location_and_contacts">Location and Contacts</string>
+</resources>
