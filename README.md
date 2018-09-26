@@ -14,7 +14,7 @@
 	}
 项目gradle
 	dependencies {
-	        implementation 'com.github.BugSir:PermissionsUtil:v1.0.0'
+	        implementation 'com.github.BugSir:PermissionsUtil:1.0.0'
 	}
 </code></pre>
 # 使用：<br/>
